@@ -1,18 +1,15 @@
 package com.atm.ATM.controller;
 
-import com.atm.ATM.domain.categoria.Categoria;
-import com.atm.ATM.domain.categoria.CategoriaRepository;
-import com.atm.ATM.domain.categoria.DadosCadastroCategoria;
-import com.atm.ATM.domain.categoria.DadosDetalhamentoCategoria;
+import com.atm.ATM.domain.categoria.*;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/categorias")
@@ -30,8 +27,9 @@ public class CategoriaController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Categoria>> listar() {
-        return ResponseEntity.ok(repository.findByAtivoTrue(Sort.by("nome")));
+    public ResponseEntity<Page<Categoria>> listar(@PageableDefault(size = 10, sort = {"id"}) Pageable pageable) {
+        var page = repository.findAllByAtivoTrue(pageable);
+        return ResponseEntity.ok(page);
     }
 
     @GetMapping("/{id}")
@@ -42,7 +40,7 @@ public class CategoriaController {
 
     @PutMapping("/{id}")
     @Transactional
-    public ResponseEntity atualizar(@RequestBody @Valid DadosCadastroCategoria dados, @PathVariable Long id) {
+    public ResponseEntity atualizar(@RequestBody @Valid DadosAtualizacaoCategoria dados, @PathVariable Long id) {
         var categoria = repository.getReferenceById(id);
         categoria.atualizarInformacoes(dados);
         return ResponseEntity.ok(new DadosDetalhamentoCategoria(categoria));

@@ -7,7 +7,7 @@ public record DadosListagemPessoa(Long id, String nome, boolean ativo) {
         this(
                 dados.getId(),
                 dados.getNome(),
-                dados.isAtivo()
+                dados.getAtivo()
         );
     }
 }

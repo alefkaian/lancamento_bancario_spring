@@ -8,7 +8,7 @@ public record DadosDetalhamentoPessoa(Long id, String nome, Endereco endereco, b
                 dados.getId(),
                 dados.getNome(),
                 dados.getEndereco(),
-                dados.isAtivo()
+                dados.getAtivo()
         );
     }
 }

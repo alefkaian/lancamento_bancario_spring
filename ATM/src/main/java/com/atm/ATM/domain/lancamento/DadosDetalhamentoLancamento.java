@@ -7,7 +7,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 
 public record DadosDetalhamentoLancamento(Long id, String descricao, BigDecimal Valor, LocalDate dataPagamento,
-                                          LocalDate dataVencimento, String categoria, String pessoa) {
+                                          LocalDate dataVencimento, String categoria, String pessoa, boolean ativo) {
     public DadosDetalhamentoLancamento(Lancamento dados) {
         this(
                 dados.getId(),
@@ -16,7 +16,8 @@ public record DadosDetalhamentoLancamento(Long id, String descricao, BigDecimal 
                 dados.getDataPagamento(),
                 dados.getDataVencimento(),
                 dados.getCategoria().getNome(),
-                dados.getPessoa().getNome()
+                dados.getPessoa().getNome(),
+                dados.getAtivo()
         );
     }
 }

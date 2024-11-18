@@ -4,14 +4,12 @@ import com.atm.ATM.domain.pessoa.*;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/pessoas")
@@ -29,20 +27,20 @@ public class PessoaController {
     }
 
     @GetMapping
-    public ResponseEntity<List<DadosListagemPessoa>> listar(@RequestParam(defaultValue =  "0") int page){
-        Pageable pageable = PageRequest.of(page, 10, Sort.by("nome").ascending());
-        return ResponseEntity.ok().body(repository.findByAtivoTrue(pageable));
+    public ResponseEntity<Page<DadosListagemPessoa>> listar(@PageableDefault(size = 10, sort = {"id"}) Pageable pageable) {
+        var page = repository.findAllByAtivoTrue(pageable).map(DadosListagemPessoa::new);
+        return ResponseEntity.ok(page);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity detalhar(@PathVariable Long id){
+    public ResponseEntity detalhar(@PathVariable Long id) {
         var pessoa = repository.getReferenceById(id);
         return ResponseEntity.ok(new DadosDetalhamentoPessoa(pessoa));
     }
 
     @PutMapping("/{id}")
     @Transactional
-    public ResponseEntity atualizar(@RequestBody @Valid DadosAtualizacaoPessoa dados, @PathVariable Long id){
+    public ResponseEntity atualizar(@RequestBody @Valid DadosAtualizacaoPessoa dados, @PathVariable Long id) {
         var pessoa = repository.getReferenceById(id);
         pessoa.atualizarInformacoes(dados);
         return ResponseEntity.ok(new DadosDetalhamentoPessoa(pessoa));
@@ -50,7 +48,7 @@ public class PessoaController {
 
     @DeleteMapping("/{id}")
     @Transactional
-    public ResponseEntity excluir(@PathVariable Long id){
+    public ResponseEntity excluir(@PathVariable Long id) {
         var pessoa = repository.getReferenceById(id);
         pessoa.excluir();
         return ResponseEntity.noContent().build();

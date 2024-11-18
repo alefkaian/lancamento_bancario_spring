@@ -22,7 +22,7 @@ public class Pessoa {
     private String nome;
     @Embedded
     private Endereco endereco;
-    private boolean ativo;
+    private Boolean ativo;
 
     public Pessoa(DadosCadastroPessoa dados) {
         this.nome = dados.nome();
@@ -33,6 +33,7 @@ public class Pessoa {
     public void atualizarInformacoes(@Valid DadosAtualizacaoPessoa dados) {
         if (dados.nome() != null) this.nome = dados.nome();
         if (dados.endereco() != null) this.endereco.atualizarInformacoes(dados.endereco());
+        if (dados.ativo() != null) this.ativo = dados.ativo();
     }
 
     public void excluir() {

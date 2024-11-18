@@ -1,5 +1,6 @@
 package com.atm.ATM.domain.categoria;
 
+import com.atm.ATM.domain.pessoa.DadosAtualizacaoPessoa;
 import jakarta.persistence.*;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
@@ -19,15 +20,16 @@ public class Categoria {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nome;
-    private boolean ativo;
+    private Boolean ativo;
 
     public Categoria(DadosCadastroCategoria dados){
         this.nome = dados.nome();
         this.ativo = true;
     }
 
-    public void atualizarInformacoes(@Valid DadosCadastroCategoria dados) {
+    public void atualizarInformacoes(@Valid DadosAtualizacaoCategoria dados) {
         if (dados.nome() != null) this.nome = dados.nome();
+        if (dados.ativo() != null) this.ativo = dados.ativo();
     }
 
     public void excluir() {

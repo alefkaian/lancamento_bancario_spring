@@ -41,7 +41,7 @@ public class Lancamento {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "codigo_pessoa")
     private Pessoa pessoa;
-    private boolean ativo;
+    private Boolean ativo;
 
     public Lancamento(DadosCadastroLancamento dados, Categoria categoria, Pessoa pessoa){
         this.descricao = dados.descricao();
@@ -52,6 +52,7 @@ public class Lancamento {
         this.tipo = dados.tipo();
         this.categoria = categoria;
         this.pessoa = pessoa;
+        this.ativo = true;
     }
 
     public void atualizarInformacoes(@Valid DadosAtualizacaoLancamento dados, Categoria categoria) {
@@ -59,6 +60,7 @@ public class Lancamento {
         if (dados.valor() != null) this.valor = dados.valor();
         if (dados.observacao() != null) this.observacao = dados.observacao();
         if (dados.tipo() != null) this.tipo = dados.tipo();
+        if (dados.ativo() != null) this.ativo = dados.ativo();
         if (categoria != null) this.categoria = categoria;
     }
 
