@@ -8,7 +8,6 @@ public record DadosCadastroLancamento(
         String descricao,
         @NotNull
         LocalDate dataVencimento,
-        @NotNull
         LocalDate dataPagamento,
         @NotNull
         BigDecimal valor,

@@ -57,6 +57,7 @@ public class Lancamento {
 
     public void atualizarInformacoes(@Valid DadosAtualizacaoLancamento dados, Categoria categoria) {
         if (dados.descricao() != null) this.descricao = dados.descricao();
+        if (dados.dataPagamento() != null) this.dataPagamento = dados.dataPagamento();
         if (dados.valor() != null) this.valor = dados.valor();
         if (dados.observacao() != null) this.observacao = dados.observacao();
         if (dados.tipo() != null) this.tipo = dados.tipo();
