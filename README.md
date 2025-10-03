@@ -5,7 +5,7 @@ bancários tanto de despesas
 quanto de receitas para controle
 financeiro e associá-los a pessoas e categorias específicas, que também são gerenciados por meio dos endpoints.
 
-![Captura de tela da interface Swagger UI mostrando os endpoints]("https://github.com/user-attachments/assets/028c4af9-be4f-4ccc-a564-46758c759410")
+<img src="https://github.com/user-attachments/assets/028c4af9-be4f-4ccc-a564-46758c759410" width="804" height="485" />
 
 ## Tecnologias Utilizadas
 
