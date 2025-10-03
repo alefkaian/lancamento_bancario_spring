@@ -1,6 +1,7 @@
 package com.atm.ATM.controller;
 
 import com.atm.ATM.domain.pessoa.*;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 @RestController
 @RequestMapping("/pessoas")
+@SecurityRequirement(name = "bearer-key")
 public class PessoaController {
     @Autowired
     private PessoaRepository repository;

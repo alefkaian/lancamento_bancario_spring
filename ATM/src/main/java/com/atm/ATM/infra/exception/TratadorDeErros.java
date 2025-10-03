@@ -1,4 +1,4 @@
-package com.atm.ATM.infra;
+package com.atm.ATM.infra.exception;
 
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.http.ResponseEntity;

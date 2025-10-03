@@ -5,6 +5,7 @@ import com.atm.ATM.domain.categoria.CategoriaRepository;
 import com.atm.ATM.domain.lancamento.*;
 import com.atm.ATM.domain.pessoa.Pessoa;
 import com.atm.ATM.domain.pessoa.PessoaRepository;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 @RestController
 @RequestMapping("/lancamentos")
+@SecurityRequirement(name = "bearer-key")
 public class LancamentoController {
     @Autowired
     private LancamentoRepository repository;
