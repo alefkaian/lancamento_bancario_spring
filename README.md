@@ -5,7 +5,7 @@ bancários tanto de despesas
 quanto de receitas para controle
 financeiro e associá-los a pessoas e categorias específicas, que também são gerenciados por meio dos endpoints.
 
-![Captura de tela da interface Swagger UI mostrando os endpoints](url)
+![Captura de tela da interface Swagger UI mostrando os endpoints]("https://github.com/user-attachments/assets/028c4af9-be4f-4ccc-a564-46758c759410")
 
 ## Tecnologias Utilizadas
 
@@ -28,14 +28,14 @@ financeiro e associá-los a pessoas e categorias específicas, que também são 
 1. **Clone o repositório e acesse a pasta raíz do projeto:**
 
 ```bash
-    git clone https://github.com/alefkaian/lancamento_bancario_spring.git
-    cd lancamento_bancario_spring/API
+git clone https://github.com/alefkaian/lancamento_bancario_spring.git
+cd lancamento_bancario_spring/API
 ```
 
 2. **Execute a aplicação:**
 
 ```bash
-    mvn spring-boot:run
+mvn spring-boot:run
 ```
 
 ### Rodando via IDE
